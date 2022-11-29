@@ -1,3 +1,8 @@
+// Adding modules
+mod api;
+mod models;
+mod repository;
+
 #[macro_use]
 extern crate rocket;
 use rocket::{get, http::Status, serde::json::Json};
