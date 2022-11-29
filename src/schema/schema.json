@@ -1,0 +1,32 @@
+{
+  "fach": {
+    "version": "Integer",
+    "name": "String", // Static, Name des Faches
+    "moeglichePruefungen": [
+      {
+        "pruefer": [
+          {
+            "name": "String", // Static
+            "bietetPruefungAn": "Boolean", // Static
+            "timestamp": "Ein Timestamp" // Static
+          }
+        ],
+        // Letzter timestamp is aktuellste Dauaer
+        "dauer": [
+          {
+            "stunden": "Integer", // Static
+            "minuten": "Integer", // Static
+            "timestamp": "Ein Timestamp" // Static
+          }
+        ],
+        // Letzter Timestamp ist der aktuelleste
+        "datum": [
+          {
+            "timestamp": "Ein Timestamp" // Static
+          }
+        ],
+        "pruefArt": "String" // Static
+      }
+    ]
+  }
+}

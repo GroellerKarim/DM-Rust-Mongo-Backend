@@ -1,0 +1,5 @@
+# Compilation Folder
+/target
+
+# IntelliJ
+.idea/
