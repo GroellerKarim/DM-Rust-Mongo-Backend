@@ -1,5 +1,5 @@
 # Compilation Folder
 /target
-
+.env
 # IntelliJ
 .idea/
