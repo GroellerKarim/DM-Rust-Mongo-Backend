@@ -1,12 +1,15 @@
 use mongodb::{bson::DateTime, results::InsertOneResult};
 use rocket::{http::Status, log::private::logger, serde::json::Json, State};
 
-use crate::{models::subject_model::Subject, repository::mondodb_repo::MongoRepo};
+use crate::{
+    models::subject_model::{CreateSubjectDto, Subject},
+    repository::mondodb_repo::MongoRepo,
+};
 
 #[post("/subject", data = "<new_subject>")]
 pub fn create_subject(
     db: &State<MongoRepo>,
-    new_subject: Json<Subject>,
+    new_subject: Json<CreateSubjectDto>,
 ) -> Result<Json<InsertOneResult>, Status> {
     let new_data_string = stringify!(new_subject);
     println!("{}", new_data_string);

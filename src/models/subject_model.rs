@@ -29,3 +29,11 @@ pub struct Duration {
     pub minutes: i8,
     pub timestamp: DateTime,
 }
+
+// DTOs
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct CreateSubjectDto {
+    pub name: String,
+    pub exam_type: String,
+}
