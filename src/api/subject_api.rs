@@ -56,3 +56,23 @@ pub fn get_subject_by_id(db: &State<MongoRepo>, id: String) -> Result<Json<Subje
         Err(_) => Err(Status::InternalServerError),
     }
 }
+
+#[delete("/subject/delete/<id>")]
+pub fn delete_subject(db: &State<MongoRepo>, id: String) -> Result<Json<&str>, Status> {
+    if id.is_empty() {
+        return Err(Status::BadRequest);
+    }
+
+    let subject_detail = db.delete_subject(&id);
+
+    match subject_detail {
+        Ok(subject) => {
+            if subject.deleted_count == 1 {
+                return Ok(Json("Subject successfully deleted!"));
+            } else {
+                return Err(Status::NotFound);
+            }
+        }
+        Err(_) => Err(Status::InternalServerError),
+    }
+}

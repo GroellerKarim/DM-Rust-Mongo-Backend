@@ -41,3 +41,20 @@ pub struct Duration {
 pub struct CreateSubjectDto {
     pub name: String,
 }
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct AddFullExamDto {
+
+    // Id
+    pub id: String,
+
+    // Examing
+    pub examiner_name: String,
+    pub does_examination: bool,
+
+    // Duration
+    pub hours: i8,
+    pub minutes: i8,
+
+    pub exam_type: String
+}
