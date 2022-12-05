@@ -1,7 +1,7 @@
-use std::env;
+use std::{env, ops::Sub};
 extern crate dotenv;
 use dotenv::dotenv;
-use rocket::serde::json::serde_json::json;
+use rocket::{http::ext::IntoCollection, serde::json::serde_json::json};
 
 use crate::models::subject_model::Subject;
 use mongodb::{
@@ -26,6 +26,18 @@ impl MongoRepo {
         let db = client.database("Cluster0");
         let collection: Collection<Subject> = db.collection("Subject");
         MongoRepo { collection }
+    }
+
+    pub fn get_all_subjects(&self) -> Result<Vec<Subject>, Error> {
+        let cursor = self
+            .collection
+            .find(None, None)
+            .ok()
+            .expect("Error retrieving all subjects");
+
+        let subjects: Vec<Subject> = cursor.map(|doc| doc.unwrap()).collect();
+
+        Ok(subjects)
     }
 
     pub fn create_subject(&self, new_subject: Subject) -> Result<InsertOneResult, Error> {
