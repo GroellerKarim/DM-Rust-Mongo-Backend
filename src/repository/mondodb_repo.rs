@@ -4,7 +4,7 @@ use dotenv::dotenv;
 
 use crate::models::subject_model::Subject;
 use mongodb::{
-    bson::{extjson::de::Error, DateTime},
+    bson::{extjson::de::Error, DateTime, oid::ObjectId},
     results::InsertOneResult,
     sync::{Client, Collection},
 };
@@ -46,5 +46,18 @@ impl MongoRepo {
             .ok()
             .expect("Error creating subject");
         Ok(subject)
+    }
+
+    pub fn get_subject(&self, id: &String) -> Result<Subject, Error> {
+        
+        let obj_id = ObjectId::parse_str(id).unwrap();
+        let filter = doc! {"_id": obj_id};
+
+        let subject_detail = self
+            .collection
+            .find_one(filter, None)
+            .ok()  
+            .expect("Error getting subject's detail");
+        Ok(subject_detail.unwrap())
     }
 }
