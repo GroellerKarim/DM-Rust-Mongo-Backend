@@ -1,10 +1,11 @@
 use std::env;
 extern crate dotenv;
 use dotenv::dotenv;
+use rocket::serde::json::serde_json::json;
 
 use crate::models::subject_model::Subject;
 use mongodb::{
-    bson::{extjson::de::Error, DateTime, oid::ObjectId},
+    bson::{doc, extjson::de::Error, oid::ObjectId, DateTime},
     results::InsertOneResult,
     sync::{Client, Collection},
 };
@@ -49,14 +50,13 @@ impl MongoRepo {
     }
 
     pub fn get_subject(&self, id: &String) -> Result<Subject, Error> {
-        
         let obj_id = ObjectId::parse_str(id).unwrap();
         let filter = doc! {"_id": obj_id};
 
         let subject_detail = self
             .collection
             .find_one(filter, None)
-            .ok()  
+            .ok()
             .expect("Error getting subject's detail");
         Ok(subject_detail.unwrap())
     }
