@@ -24,4 +24,5 @@ fn rocket() -> _ {
         .mount("/", routes![create_subject])
         .mount("/", routes![get_subject_by_id])
         .mount("/", routes![delete_subject])
+    //    .mount("/", routes![add_full_exam])
 }
