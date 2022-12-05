@@ -40,3 +40,17 @@ pub fn create_subject(
         Err(_) => Err(Status::InternalServerError),
     }
 }
+
+#[get("/subject/<id>")]
+pub fn get_subject_by_id(db: &State<MongoRepo>, id: String) -> Result<Json<Subject>, Status> {
+    if id.is_empty() {
+        return Err(Status::BadRequest);
+    };
+
+    let subject_detail = db.get_subject_by_id(&id);
+
+    match subject_detail {
+        Ok(subject) => Ok(Json(subject)),
+        Err(_) => Err(Status::InternalServerError),
+    }
+}

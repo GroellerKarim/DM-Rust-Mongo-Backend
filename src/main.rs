@@ -5,7 +5,7 @@ mod repository;
 
 #[macro_use]
 extern crate rocket;
-use api::subject_api::create_subject;
+use api::subject_api::{create_subject, get_subject_by_id};
 use repository::mondodb_repo::MongoRepo;
 use rocket::{get, http::Status, serde::json::Json};
 
@@ -21,4 +21,5 @@ fn rocket() -> _ {
         .manage(db)
         .mount("/", routes![hello])
         .mount("/", routes![create_subject])
+        .mount("/", routes![get_subject_by_id])
 }

@@ -49,7 +49,7 @@ impl MongoRepo {
         Ok(subject)
     }
 
-    pub fn get_subject(&self, id: &String) -> Result<Subject, Error> {
+    pub fn get_subject_by_id(&self, id: &String) -> Result<Subject, Error> {
         let obj_id = ObjectId::parse_str(id).unwrap();
         let filter = doc! {"_id": obj_id};
 
