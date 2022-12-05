@@ -9,7 +9,12 @@ pub struct Subject {
     pub version: DateTime,
     pub name: String,
 
-    pub possible_examiners: Vec<Examiner>,
+    pub exams: Vec<Exams>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Exams {
+    pub examiner: Examiner,
     pub duration: Vec<Duration>,
     pub date: Vec<DateTime>,
 
@@ -35,5 +40,4 @@ pub struct Duration {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CreateSubjectDto {
     pub name: String,
-    pub exam_type: String,
 }

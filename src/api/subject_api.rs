@@ -19,15 +19,7 @@ pub fn create_subject(
         id: None,
         version: date.to_owned(),
         name: new_subject.name.to_owned(),
-
-        //        possible_examiners: new_subject.possible_examiners.to_vec(),
-        //      duration: new_subject.duration.to_vec(),
-        //    date: new_subject.date.to_vec(),
-        possible_examiners: vec![],
-        duration: vec![],
-        date: vec![],
-
-        exam_type: new_subject.exam_type.to_owned(),
+        exams: vec![]
     };
 
     let data_string = stringify!(data);

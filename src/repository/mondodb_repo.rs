@@ -35,11 +35,7 @@ impl MongoRepo {
             version: time_now,
             name: new_subject.name,
 
-            possible_examiners: new_subject.possible_examiners,
-            duration: new_subject.duration,
-            date: new_subject.date,
-
-            exam_type: new_subject.exam_type,
+            exams: new_subject.exams,
         };
         let subject = self
             .collection
