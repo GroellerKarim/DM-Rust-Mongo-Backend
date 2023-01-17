@@ -9,11 +9,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
+import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Document(collection = "gro_faecher")
 public class Fachv2 {
 
@@ -25,11 +25,15 @@ public class Fachv2 {
     private int version;
 
     @DocumentReference
-    private List<MoeglichePruefungenV2> moeglichePruefungen;
+    private List<MoeglichePruefungenV2> moeglichePruefungen = new ArrayList<>();
 
     public Fachv2(String name, List<MoeglichePruefungenV2> moeglichePruefungen) {
         this.name = name;
         this.version = 2;
         this.moeglichePruefungen = moeglichePruefungen;
+    }
+
+    public Fachv2() {
+        this.version = 2;
     }
 }

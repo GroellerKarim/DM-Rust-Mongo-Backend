@@ -3,7 +3,9 @@ package eu.groeller.repository;
 import eu.groeller.domain.v1.Fach;
 import eu.groeller.domain.v2.Fachv2;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface Fachv2Repository extends MongoRepository<Fachv2, String> {
 
     Fachv2 findFachv2ByName(String name);
